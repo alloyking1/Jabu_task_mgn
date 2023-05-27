@@ -1,7 +1,3 @@
-@props([
-    'title',
-])
-
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -53,5 +49,7 @@
                 
             </main>
         </div>
+        @livewire('livewire-ui-modal')
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
 </html>
