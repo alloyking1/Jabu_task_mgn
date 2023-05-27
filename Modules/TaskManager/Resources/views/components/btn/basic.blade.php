@@ -1,6 +1,6 @@
 @props([
     'text',
-    'link' => null
+    'link' => '#'
 ])
 
 <div class="">

@@ -1,5 +1,5 @@
 <div>
-   <x-taskmanager::btn.basic text="New Task" :link="route('task.create')"/>
+   <x-taskmanager::btn.basic x-data x-on:click="$dispatch('open-modal')" text="New Task"/>
     <x-taskmanager::display-grid>
     <div>
         <x-taskmanager::text.text-3xl display="Heading"/>
@@ -20,4 +20,8 @@
     </div>
 
     </x-taskmanager::display-grid>
+
+    <x-taskmanager::elements.modal heading="Create task">
+        testing
+    </x-taskmanager::elements.modal>
 </div>
