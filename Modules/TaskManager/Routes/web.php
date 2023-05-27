@@ -11,6 +11,8 @@
 |
 */
 
-Route::prefix('taskmanager')->group(function() {
-    Route::get('/', 'TaskManagerController@index');
+use Modules\TaskManager\Http\Controllers\TaskManagerController;
+
+Route::prefix('taskmanager')->group(function () {
+    Route::get('/', [TaskManagerController::class, 'index'])->name('task.list');
 });
