@@ -12,7 +12,8 @@
 */
 
 use Modules\TaskManager\Http\Controllers\TaskManagerController;
+use Modules\TaskManager\Http\Livewire\LivewireTaskManagerController;
 
 Route::prefix('taskmanager')->group(function () {
-    Route::get('/', [TaskManagerController::class, 'index'])->name('task.list');
+    // Route::get('/', Modules\TaskManager\Http\Livewire\LivewireTaskManagerController::class)->name('task.list');
 });
