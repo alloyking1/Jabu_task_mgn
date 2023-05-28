@@ -21,7 +21,6 @@
 
     </x-taskmanager::display-grid>
 
-    <x-taskmanager::elements.modal heading="Create task">
-        testing
-    </x-taskmanager::elements.modal>
+   <x-taskmanager::pages.create-task/>
+   <x-taskmanager::pages.create-task/>
 </div>

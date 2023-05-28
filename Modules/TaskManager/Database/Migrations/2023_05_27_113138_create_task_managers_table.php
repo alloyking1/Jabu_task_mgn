@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('task_managers', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->mediumText('description');
+            $table->string('duration');
+            $table->string('frequency');
+            $table->boolean('status')->default(0);
+            $table->foreignId('task_groups_id')->constrained('task_groups')->cascadeOnDelete();
             $table->timestamps();
         });
     }

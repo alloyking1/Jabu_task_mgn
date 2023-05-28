@@ -15,5 +15,5 @@ use Modules\TaskManager\Http\Controllers\TaskManagerController;
 use Modules\TaskManager\Http\Livewire\LivewireTaskManagerController;
 
 Route::prefix('taskmanager')->group(function () {
-    Route::view('/create', 'taskmanager::tasks.create')->name('task.create');
+    // Route::view('/create', 'taskmanager::tasks.create')->name('task.create');
 });
