@@ -9,8 +9,8 @@ class TaskManager extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $fillable = ['name', 'description', 'duration_start', 'duration_end', 'frequency', 'status', 'task_groups_id'];
+
     protected static function newFactory()
     {
         return \Modules\TaskManager\Database\factories\TaskManagerFactory::new();

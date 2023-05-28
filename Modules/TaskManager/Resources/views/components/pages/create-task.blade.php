@@ -1,59 +1,55 @@
+
+@props(['groups'])
 <x-taskmanager::elements.modal heading="Create task">
     <x-taskmanager::auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="mt-4">
  
     </div>
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <form wire:submit.prevent="create">
  
         <!-- name-->
         <div>
-            <x-taskmanager::input-label for="email" :value="__('Name')" />
-            <x-taskmanager::text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-taskmanager::input-label for="name" :value="__('Name')" />
+            <x-taskmanager::text-input class="block mt-1 w-full" type="text" wire:model="name" />
             <x-taskmanager::input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
  
         <!-- description -->
          <div class="mt-4">
-            <x-taskmanager::input-label for="body" :value="__('Description')" />
-            <x-taskmanager::text-area id="body" class="block mt-1 w-full" type="text" cols="30" rows=5 :value="old('body')" name="body" required/>
-            <x-taskmanager::input-error :messages="$errors->get('body')" class="mt-2" />
+            <x-taskmanager::input-label for="description" :value="__('Description')" />
+            <x-taskmanager::text-area class="block mt-1 w-full" type="text" cols="30" rows=5  wire:model="description"/>
+            <x-taskmanager::input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         {{-- /duration from n time to m time --}}
-        {{-- <div class="mt-4">
-            <x-select name="category_id">
-                @foreach ($category as $each )
-                    <x-select-options :name="$each->name" :value="$each->id"/>
-                @endforeach
-            </x-select>
-            <x-input-error :messages="$errors->get('category')" class="mt-2" />
-        </div> --}}
         <div class="mt-4">
-            <x-taskmanager::date-input/>
-            <x-taskmanager::date-input/>
+            <x-taskmanager::date-input wire:model="duration_start"/>
+            <x-taskmanager::date-input  wire:model="duration_end"/>
+            <x-taskmanager::input-error :messages="$errors->get('duration_start')" class="mt-2" />
+            <x-taskmanager::input-error :messages="$errors->get('duration_end')" class="mt-2" />
         </div>
 
         {{-- frequency every day every 2 days --}}
         <div class="mt-4">
-            <x-taskmanager::input-label for="body" :value="__('frequency')" />
-            <x-taskmanager::select name="frequency">
-                <x-taskmanager::select-options name="Daily" value="key"/>
+            <x-taskmanager::input-label for="frequency" :value="__('frequency')" />
+            <x-taskmanager::select name="frequency" wire:model="frequency">
                 @foreach (Modules\TaskManager\Enums\FrequencyEnum::cases() as $frequency )
                     <x-taskmanager::select-options :name="$frequency->value" :value="$frequency"/>
                 @endforeach
             </x-taskmanager::select>
-            <x-taskmanager::input-error :messages="$errors->get('category')" class="mt-2" />
+            <x-taskmanager::input-error :messages="$errors->get('frequency')" class="mt-2" />
         </div>
 
         {{-- group --}}
         <div class="mt-4">
-            <x-taskmanager::input-label for="body" :value="__('Group')" />
-            <x-taskmanager::select name="category_id">
-                <x-taskmanager::select-options name="Task Today" value="key"/>
+            <x-taskmanager::input-label for="task_groups_id" :value="__('Group')" />
+            <x-taskmanager::select name="task_groups_id" wire:model="task_groups_id">
+                @foreach ($groups as $group )
+                    <x-taskmanager::select-options :name="$group->name" :value="$group->id"/>
+                @endforeach
             </x-taskmanager::select>
-            <x-taskmanager::input-error :messages="$errors->get('category')" class="mt-2" />
+            <x-taskmanager::input-error :messages="$errors->get('task_groups_id')" class="mt-2" />
         </div>
  
         <div class="flex items-center justify-end mt-4">

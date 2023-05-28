@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->mediumText('description');
-            $table->string('duration');
+            $table->string('duration_start');
+            $table->string('duration_end');
             $table->string('frequency');
             $table->boolean('status')->default(0);
             $table->foreignId('task_groups_id')->constrained('task_groups')->cascadeOnDelete();

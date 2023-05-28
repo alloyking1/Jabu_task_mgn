@@ -20,7 +20,5 @@
     </div>
 
     </x-taskmanager::display-grid>
-
-   <x-taskmanager::pages.create-task/>
-   <x-taskmanager::pages.create-task/>
+   <x-taskmanager::pages.create-task :groups="$groups"/>
 </div>
