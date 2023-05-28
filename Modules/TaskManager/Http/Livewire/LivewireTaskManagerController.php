@@ -24,6 +24,7 @@ class LivewireTaskManagerController extends Component
 
     public function create()
     {
+
         $result =  $this->taskManagerService->create([
             'name' => $this->name,
             'description' => $this->description,
@@ -46,7 +47,8 @@ class LivewireTaskManagerController extends Component
     public function render()
     {
         return view('taskmanager::livewire.livewire-task-manager-controller', [
-            'groups' => $this->taskManagerService->allTaskGroup()
+            'groups' => $this->taskManagerService->allTaskGroup(),
+            'allTask' => $this->taskManagerService->fetTasks('task_today')
         ]);
     }
 }

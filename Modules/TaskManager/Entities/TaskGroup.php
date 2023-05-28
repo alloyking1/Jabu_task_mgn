@@ -15,4 +15,9 @@ class TaskGroup extends Model
     {
         return \Modules\TaskManager\Database\factories\TaskGroupFactory::new();
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(TaskManager::class);
+    }
 }

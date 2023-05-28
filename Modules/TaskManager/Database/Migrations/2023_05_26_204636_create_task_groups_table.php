@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        //TO DO -- get data from enum
         DB::table('task_groups')->insert([
             ['name' => 'TASKS TODAY', 'description' => 'description of the category'],
             ['name' => 'TASKS TOMORROW', 'description' => 'description of the category'],

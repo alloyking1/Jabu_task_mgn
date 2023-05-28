@@ -15,4 +15,9 @@ class TaskManager extends Model
     {
         return \Modules\TaskManager\Database\factories\TaskManagerFactory::new();
     }
+
+    public function taskGroup()
+    {
+        return $this->belongsTo(TaskGroup::class, 'task_groups_id');
+    }
 }
