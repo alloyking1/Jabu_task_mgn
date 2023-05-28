@@ -17,6 +17,9 @@ class LivewireTaskManagerController extends Component
     public $status;
     public $task_groups_id;
 
+    public $showTask;
+    public $showDiv = false;
+
     public function boot()
     {
         $this->taskManagerService = app(TaskManagerService::class);
@@ -36,6 +39,12 @@ class LivewireTaskManagerController extends Component
         dump($result);
     }
 
+    public function show($id)
+    {
+        $this->showTask = $this->taskManagerService->showTask($id);
+        $this->openDiv();
+    }
+
     public function update()
     {
     }
@@ -48,7 +57,12 @@ class LivewireTaskManagerController extends Component
     {
         return view('taskmanager::livewire.livewire-task-manager-controller', [
             'groups' => $this->taskManagerService->allTaskGroup(),
-            'allTask' => $this->taskManagerService->fetTasks('task_today')
+            'allTask' => $this->taskManagerService->fetchTasks('task_today'),
         ]);
+    }
+
+    public function openDiv()
+    {
+        $this->showDiv = !$this->showDiv;
     }
 }

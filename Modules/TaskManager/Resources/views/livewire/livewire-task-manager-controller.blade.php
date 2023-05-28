@@ -8,10 +8,11 @@
             @foreach ($allTask as $task)
             {{-- todo fetch from enum --}}
             @if ($task->task_groups_name === "TASKS TODAY")
-             {{ $task->id }}
-            {{ $task->task_groups_name }}
-                <x-taskmanager::text.text-medium :display="$task->name"/>
-                <x-taskmanager::text.text-medium :display="$task->description"/>
+                <a href="#" wire:click="show({{ $task->id }})">
+                    <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
+                    <x-taskmanager::text.text-sm class="" :display="$task->description"/>
+                </a>
+                <x-taskmanager::elements.line/>
             @endif
             @endforeach
         </x-taskmanager::elements.container>
@@ -23,22 +24,35 @@
         <x-taskmanager::elements.container>
             @foreach ($allTask as $task)
             @if ($task->task_groups_name === "TASKS TOMORROW")
-             {{ $task->id }}
-            {{ $task->task_groups_name }}
-                <x-taskmanager::text.text-medium :display="$task->name"/>
-                <x-taskmanager::text.text-medium :display="$task->description"/>
+                <a href="#" wire:click="show({{ $task->id }})">
+                    <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
+                    <x-taskmanager::text.text-sm class="" :display="$task->description"/>
+                </a>
+            <x-taskmanager::elements.line/>
             @endif
             @endforeach
         </x-taskmanager::elements.container>
     </div>
-    <div>
+
+    <div class="mt-4">
         <x-taskmanager::text.text-3xl display="Task Next Week"/>
         <x-taskmanager::elements.line/>
         <x-taskmanager::elements.container>
-            <x-taskmanager::text.text-medium display="this is the content of the task"/>
+            @foreach ($allTask as $task)
+            @if ($task->task_groups_name === "TASKS NEXT WEEK")
+                <a href="#" wire:click="show({{ $task->id }})">
+                    <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
+                    <x-taskmanager::text.text-sm class="" :display="$task->description"/>
+                </a>
+            <x-taskmanager::elements.line/>
+            @endif
+            @endforeach
         </x-taskmanager::elements.container>
     </div>
 
+    @if ($showDiv)
+        <x-taskmanager::pages.show-task :name="$showTask->name" :description="$showTask->description" :id="$showTask->id"/>
+    @endif
     </x-taskmanager::display-grid>
    <x-taskmanager::pages.create-task :groups="$groups"/>
 </div>
