@@ -24,6 +24,11 @@ class TaskManagerService
         return TaskManager::find($id);
     }
 
+    public function delete($id)
+    {
+        return TaskManager::find($id)->delete();
+    }
+
     public function allTaskGroup()
     {
         return TaskGroup::all();

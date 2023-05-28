@@ -50,7 +50,7 @@
         </x-taskmanager::elements.container>
     </div>
 
-    @if ($showDiv)
+    @if ($toggleDiv)
         <x-taskmanager::pages.show-task :name="$showTask->name" :description="$showTask->description" :id="$showTask->id"/>
     @endif
     </x-taskmanager::display-grid>

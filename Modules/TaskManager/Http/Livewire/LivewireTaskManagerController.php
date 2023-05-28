@@ -18,7 +18,7 @@ class LivewireTaskManagerController extends Component
     public $task_groups_id;
 
     public $showTask;
-    public $showDiv = false;
+    public $toggleDiv = false;
 
     public function boot()
     {
@@ -42,15 +42,20 @@ class LivewireTaskManagerController extends Component
     public function show($id)
     {
         $this->showTask = $this->taskManagerService->showTask($id);
-        $this->openDiv();
+        $this->toggleDiv();
     }
 
     public function update()
     {
     }
 
-    public function delete()
+    public function delete($id)
     {
+        // TO DO: flag warning
+        $this->taskManagerService->delete($id);
+        $this->boot();
+        $this->render();
+        $this->toggleDiv();
     }
 
     public function render()
@@ -61,8 +66,8 @@ class LivewireTaskManagerController extends Component
         ]);
     }
 
-    public function openDiv()
+    public function toggleDiv()
     {
-        $this->showDiv = !$this->showDiv;
+        $this->toggleDiv = !$this->toggleDiv;
     }
 }
