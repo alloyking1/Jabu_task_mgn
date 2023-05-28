@@ -13,6 +13,11 @@ class TaskManagerService
         return TaskManager::create($data[0]);
     }
 
+    public function update(...$data)
+    {
+        return TaskManager::find($data[0]['id'])->update($data[1]);
+    }
+
     public function fetchTasks($group = null)
     {
         return TaskManager::leftJoin('task_groups', 'task_groups.id', '=', 'task_managers.task_groups_id')

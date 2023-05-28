@@ -13,7 +13,7 @@
       <x-taskmanager::elements.line/>
       <x-taskmanager::text.text-medium display="{{ $description }}"/>
       <div class="flex justify-end">
-          <a href="#" class="border border-gray-500 text-grey-500 p-2 rounded-md">Edit</a>
+          <a href="#" wire:click="toggleUpdateDiv({{ $id }})" class="border border-gray-500 text-grey-500 p-2 rounded-md">Edit</a>
           <a wire:click="delete({{ $id }})" href="#" class="border bg-red-500 text-white p-2 rounded-md">Delete</a>
       </div>
   </div>

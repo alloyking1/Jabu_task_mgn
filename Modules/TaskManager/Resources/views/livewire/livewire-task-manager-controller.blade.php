@@ -45,6 +45,9 @@
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
                 </a>
             <x-taskmanager::elements.line/>
+            @else
+                <x-taskmanager::text.text-medium class="font-semibold text-xl" display="You have no task in this group"/>
+                @break
             @endif
             @endforeach
         </x-taskmanager::elements.container>
@@ -53,6 +56,10 @@
     @if ($toggleDiv)
         <x-taskmanager::pages.show-task :name="$showTask->name" :description="$showTask->description" :id="$showTask->id"/>
     @endif
+    @if ($toggleUpdateDiv)
+        <x-taskmanager::pages.edit-task :value="$showTask"/>
+    @endif
+
     </x-taskmanager::display-grid>
    <x-taskmanager::pages.create-task :groups="$groups"/>
 </div>

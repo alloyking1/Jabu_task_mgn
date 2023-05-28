@@ -19,6 +19,7 @@ class LivewireTaskManagerController extends Component
 
     public $showTask;
     public $toggleDiv = false;
+    public $toggleUpdateDiv = false;
 
     public function boot()
     {
@@ -27,7 +28,7 @@ class LivewireTaskManagerController extends Component
 
     public function create()
     {
-
+        //todo form validation
         $result =  $this->taskManagerService->create([
             'name' => $this->name,
             'description' => $this->description,
@@ -45,13 +46,36 @@ class LivewireTaskManagerController extends Component
         $this->toggleDiv();
     }
 
-    public function update()
+    public function showUpdate($id)
     {
+        $data = $this->taskManagerService->showTask($id);
+        $this->name = $data->name;
+        $this->description = $data->description;
+        $this->duration_start = $data->duration_start;
+        $this->duration_end = $data->duration_end;
+        $this->frequency = $data->frequency;
+        $this->status = $data->status;
+        $this->task_groups_id = $data->task_groups_id;
+    }
+
+    public function update($id)
+    {
+        //todo form validation
+        $this->taskManagerService->update(['id' => $id], [
+            'name' => $this->name,
+            'description' => $this->description,
+            'duration_start' => $this->duration_start,
+            'duration_end' => $this->duration_end,
+            'frequency' => $this->frequency,
+            'task_groups_id' => $this->task_groups_id
+        ]);
+        $this->render();
+        $this->toggleUpdateDiv($id);
     }
 
     public function delete($id)
     {
-        // TO DO: flag warning
+        // TO DO: flag warning, fix 404 bug
         $this->taskManagerService->delete($id);
         $this->boot();
         $this->render();
@@ -69,5 +93,11 @@ class LivewireTaskManagerController extends Component
     public function toggleDiv()
     {
         $this->toggleDiv = !$this->toggleDiv;
+    }
+    public function toggleUpdateDiv($id = null)
+    {
+        $this->toggleDiv();
+        $this->showUpdate($id);
+        $this->toggleUpdateDiv = !$this->toggleUpdateDiv;
     }
 }
