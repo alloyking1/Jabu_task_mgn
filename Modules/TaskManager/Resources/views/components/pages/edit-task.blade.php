@@ -12,7 +12,7 @@
             <div>
                 <x-taskmanager::input-label for="name" :value="__('Name')" />
                 <x-taskmanager::text-input class="block mt-1 w-full" type="text" wire:model="name" />
-                <x-taskmanager::input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-taskmanager::input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
     
             <!-- description -->
@@ -40,17 +40,6 @@
                 </x-taskmanager::select>
                 <x-taskmanager::input-error :messages="$errors->get('frequency')" class="mt-2" />
             </div>
-
-            {{-- group --}}
-            {{-- <div class="mt-4">
-                <x-taskmanager::input-label for="task_groups_id" :value="__('Group')" />
-                <x-taskmanager::select name="task_groups_id" wire:model="task_groups_id">
-                    @foreach ($groups as $group )
-                        <x-taskmanager::select-options :name="$group->name" :value="$group->id"/>
-                    @endforeach
-                </x-taskmanager::select>
-                <x-taskmanager::input-error :messages="$errors->get('task_groups_id')" class="mt-2" />
-            </div> --}}
     
             <div class="flex items-center justify-end mt-4">
     

@@ -12,7 +12,7 @@
         <div>
             <x-taskmanager::input-label for="name" :value="__('Name')" />
             <x-taskmanager::text-input class="block mt-1 w-full" type="text" wire:model="name" />
-            <x-taskmanager::input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-taskmanager::input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
  
         <!-- description -->
@@ -34,6 +34,7 @@
         <div class="mt-4">
             <x-taskmanager::input-label for="frequency" :value="__('frequency')" />
             <x-taskmanager::select name="frequency" wire:model="frequency">
+                <x-taskmanager::select-options name="Select" value="#"/>
                 @foreach (Modules\TaskManager\Enums\FrequencyEnum::cases() as $frequency )
                     <x-taskmanager::select-options :name="$frequency->value" :value="$frequency"/>
                 @endforeach
@@ -45,6 +46,7 @@
         <div class="mt-4">
             <x-taskmanager::input-label for="task_groups_id" :value="__('Group')" />
             <x-taskmanager::select name="task_groups_id" wire:model="task_groups_id">
+                <x-taskmanager::select-options name="Select" value="#"/>
                 @foreach ($groups as $group )
                     <x-taskmanager::select-options :name="$group->name" :value="$group->id"/>
                 @endforeach

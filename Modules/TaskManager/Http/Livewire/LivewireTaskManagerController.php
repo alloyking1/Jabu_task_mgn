@@ -28,15 +28,17 @@ class LivewireTaskManagerController extends Component
 
     public function create()
     {
-        //todo form validation
-        $result =  $this->taskManagerService->create([
-            'name' => $this->name,
-            'description' => $this->description,
-            'duration_start' => $this->duration_start,
-            'duration_end' => $this->duration_end,
-            'frequency' => $this->frequency,
-            'task_groups_id' => $this->task_groups_id
+        //todo validation to trait
+        $validatedData = $this->validate([
+            'name' => 'required',
+            'description' => 'required|string',
+            'duration_start' => 'required',
+            'duration_end' => 'required',
+            'frequency' => 'required',
+            'task_groups_id' => 'required'
         ]);
+
+        $this->taskManagerService->create($validatedData);
         $this->render();
     }
 
@@ -60,15 +62,16 @@ class LivewireTaskManagerController extends Component
 
     public function update($id)
     {
-        //todo form validation
-        $this->taskManagerService->update(['id' => $id], [
-            'name' => $this->name,
-            'description' => $this->description,
-            'duration_start' => $this->duration_start,
-            'duration_end' => $this->duration_end,
-            'frequency' => $this->frequency,
-            'task_groups_id' => $this->task_groups_id
+        //todo validation to trait
+        $validatedData = $this->validate([
+            'name' => 'required',
+            'description' => 'required|string',
+            'duration_start' => 'required',
+            'duration_end' => 'required',
+            'frequency' => 'required',
+            'task_groups_id' => 'required'
         ]);
+        $this->taskManagerService->update(['id' => $id], $validatedData);
         $this->render();
         $this->toggleUpdateDiv($id);
     }

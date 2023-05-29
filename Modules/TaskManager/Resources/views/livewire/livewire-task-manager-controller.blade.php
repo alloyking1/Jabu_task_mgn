@@ -7,7 +7,7 @@
         <x-taskmanager::elements.container>
             @foreach ($allTask as $task)
             {{-- todo fetch from enum --}}
-            @if ($task->task_groups_name === "TASKS TODAY")
+            @if ($task->task_groups_name === "TASKS TODAY" && $task->status != true)
                 <a href="#" wire:click="show({{ $task->id }})">
                     <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
@@ -24,7 +24,7 @@
         <x-taskmanager::elements.line/>
         <x-taskmanager::elements.container>
             @foreach ($allTask as $task)
-            @if ($task->task_groups_name === "TASKS TOMORROW")
+            @if ($task->task_groups_name === "TASKS TOMORROW" && $task->status != true)
                 <a href="#" wire:click="show({{ $task->id }})">
                     <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
@@ -40,7 +40,7 @@
         <x-taskmanager::elements.line/>
         <x-taskmanager::elements.container>
             @foreach ($allTask as $task)
-            @if ($task->task_groups_name === "TASKS NEXT WEEK")
+            @if ($task->task_groups_name === "TASKS NEXT WEEK" && $task->status != true)
                 <a href="#" wire:click="show({{ $task->id }})">
                     <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
