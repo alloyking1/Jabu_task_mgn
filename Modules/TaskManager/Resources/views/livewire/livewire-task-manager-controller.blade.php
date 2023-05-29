@@ -11,6 +11,7 @@
                 <a href="#" wire:click="show({{ $task->id }})">
                     <x-taskmanager::text.text-medium class="font-semibold text-xl" :display="$task->name"/>
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
+                    
                 </a>
                 <x-taskmanager::elements.line/>
             @endif
@@ -45,16 +46,22 @@
                     <x-taskmanager::text.text-sm class="" :display="$task->description"/>
                 </a>
             <x-taskmanager::elements.line/>
-            @else
-                <x-taskmanager::text.text-medium class="font-semibold text-xl" display="You have no task in this group"/>
-                @break
             @endif
             @endforeach
         </x-taskmanager::elements.container>
     </div>
 
     @if ($toggleDiv)
-        <x-taskmanager::pages.show-task :name="$showTask->name" :description="$showTask->description" :id="$showTask->id"/>
+        <x-taskmanager::pages.show-task 
+        :name="$showTask->name" 
+        :description="$showTask->description" 
+        :id="$showTask->id"
+        :duration_start="$showTask->duration_start"
+        :duration_end="$showTask->duration_end"
+        :frequency="$showTask->frequency"
+        :group="$showTask->group"
+        :status="$showTask->status"
+        />
     @endif
     @if ($toggleUpdateDiv)
         <x-taskmanager::pages.edit-task :value="$showTask"/>

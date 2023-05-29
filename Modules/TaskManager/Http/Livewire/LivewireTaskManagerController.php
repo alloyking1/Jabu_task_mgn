@@ -37,7 +37,7 @@ class LivewireTaskManagerController extends Component
             'frequency' => $this->frequency,
             'task_groups_id' => $this->task_groups_id
         ]);
-        dump($result);
+        $this->render();
     }
 
     public function show($id)
@@ -73,6 +73,13 @@ class LivewireTaskManagerController extends Component
         $this->toggleUpdateDiv($id);
     }
 
+    public function updateTaskStatus($id)
+    {
+        $this->taskManagerService->update(['id' => $id], [
+            'status' => true,
+        ]);
+        $this->render();
+    }
     public function delete($id)
     {
         // TO DO: flag warning, fix 404 bug
