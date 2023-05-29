@@ -1,5 +1,3 @@
-code, tests, implementation instructions, and a database diagram
-
 # A module that allows users to create periodic tasks and manage them
 
 > This solution was implemented in a modular software architecture pattern using Laravel and Livewire.
