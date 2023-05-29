@@ -87,9 +87,8 @@ class LivewireTaskManagerController extends Component
     {
         // TO DO: flag warning, fix 404 bug
         $this->taskManagerService->delete($id);
-        $this->boot();
-        $this->render();
-        $this->toggleDiv();
+        // $this->toggleDiv();
+        return $this->render();
     }
 
     public function render()
