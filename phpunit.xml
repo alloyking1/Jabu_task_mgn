@@ -5,11 +5,19 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+        <testsuite name="Modules">
+            <directory suffix="Test.php">./modules/*/Tests/Integration</directory>
+            <directory suffix="Test.php">./modules/*/Tests/Feature</directory>
+            <directory suffix="Test.php">./modules/*/Tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./modules/*/Tests/Integration</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+            <directory suffix="Test.php">./modules/*/Tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./modules/*/Tests/Unit</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -21,11 +29,71 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
 </phpunit>
+
+
+<!-- 
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+        <testsuites>
+            <testsuite name="Feature">
+                <directory suffix="Test.php">./Modules/**/Tests/</directory>
+            </testsuite>
+
+            <testsuite name="Unit">
+                <directory suffix="Test.php">./Modules/**/Tests/</directory>
+            </testsuite>
+        </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./modules</directory>
+            <exclude>
+                <directory suffix="blade.php">./modules</directory>
+                <directory suffix=".php">./modules/**/Routes</directory>
+                <directory suffix=".php">./modules/**/Resources</directory>
+                <directory suffix=".php">./modules/**/Tests</directory>
+                <directory suffix=".php">./modules/**/Config</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:C70dyyvA8MBiI18KuHuru883lf73p54LSOIbwbu71+g="/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="APP_URL" value="http://localhost"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="MAIL_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="sqlite" force="true"/>
+        <env name="DB_DATABASE" value="database/database.sqlite" force="true"/>
+        <env name="DB_DRIVER" value="sqlite" force="true"/>
+        <env name="JWT_SECRET" value="u5u9J3U0v4MgSJqQydvVOJ3jZ6w6KJ9Y" force="true"/>
+    </php>
+    <logging>
+        <log type="coverage-html" target="./.tmp/report" lowUpperBound="35"
+             highLowerBound="70"/>
+        <log type="coverage-clover" target="./.tmp/coverage.xml"/>
+        <log type="coverage-php" target="./.tmp/coverage.serialized"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="junit" target="./.tmp/logfile.xml"/>
+        <log type="testdox-html" target="./.tmp/testdox.html"/>
+        <log type="testdox-text" target="./.tmp/testdox.txt"/>
+    </logging>
+</phpunit> -->
