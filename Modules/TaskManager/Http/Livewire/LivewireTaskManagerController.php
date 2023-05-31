@@ -14,7 +14,7 @@ class LivewireTaskManagerController extends Component
     public $duration_start;
     public $duration_end;
     public $frequency;
-    public $status;
+    public $status = false;
     public $task_groups_id;
 
     public $showTask;
@@ -39,6 +39,7 @@ class LivewireTaskManagerController extends Component
         ]);
 
         $this->taskManagerService->create($validatedData);
+        $this->reset();
         $this->render();
     }
 
@@ -75,12 +76,13 @@ class LivewireTaskManagerController extends Component
         $this->taskManagerService->update(['id' => $id], $validatedData);
         $this->toggleUpdateDiv = false;
         $this->render();
+        $this->reset();
     }
 
     public function updateTaskStatus($id)
     {
         $this->taskManagerService->update(['id' => $id], [
-            'status' => true,
+            'status' => $this->status = !$this->status,
         ]);
         $this->render();
     }
@@ -88,8 +90,9 @@ class LivewireTaskManagerController extends Component
     {
         // TO DO: flag warning, fix 404 bug
         $this->taskManagerService->delete($id);
-        // $this->toggleDiv();
-        return $this->render();
+        $this->toggleDiv = false;
+        $this->boot();
+        $this->render();
     }
 
     public function render()
