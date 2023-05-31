@@ -58,6 +58,7 @@ class LivewireTaskManagerController extends Component
         $this->frequency = $data->frequency;
         $this->status = $data->status;
         $this->task_groups_id = $data->task_groups_id;
+        $this->toggleDiv = false;
     }
 
     public function update($id)
@@ -72,8 +73,8 @@ class LivewireTaskManagerController extends Component
             'task_groups_id' => 'required'
         ]);
         $this->taskManagerService->update(['id' => $id], $validatedData);
+        $this->toggleUpdateDiv = false;
         $this->render();
-        $this->toggleUpdateDiv($id);
     }
 
     public function updateTaskStatus($id)
