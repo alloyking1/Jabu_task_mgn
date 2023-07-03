@@ -21,13 +21,13 @@ return new class extends Migration
         });
 
         //TO DO -- get data from enum
-        // DB::table('task_groups')->insert([
-        //     ['name' => 'TASKS TODAY', 'description' => 'description of the category'],
-        //     ['name' => 'TASKS TOMORROW', 'description' => 'description of the category'],
-        //     ['name' => 'TASKS NEXT WEEK', 'description' => 'description of the category'],
-        //     ['name' => ' TASKS NEXT WEEK', 'description' => 'description of the category'],
-        //     ['name' => ' TASKS NEXT', 'description' => 'description of the category'],
-        // ]);
+        DB::table('task_groups')->insert([
+            ['name' => 'TASKS TODAY', 'description' => 'description of the category'],
+            ['name' => 'TASKS TOMORROW', 'description' => 'description of the category'],
+            ['name' => 'TASKS NEXT WEEK', 'description' => 'description of the category'],
+            ['name' => ' TASKS NEXT WEEK', 'description' => 'description of the category'],
+            ['name' => ' TASKS NEXT', 'description' => 'description of the category'],
+        ]);
     }
 
     /**
